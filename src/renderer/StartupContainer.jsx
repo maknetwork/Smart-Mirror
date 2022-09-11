@@ -3,9 +3,13 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import loadingLogo from './smart-mirror.jpg';
+import introduction from './introduction.mp3';
 const StartupContainer = () => {
   const navigate = useNavigate();
   useEffect(() => {
+    const sound = new Audio(introduction);
+    sound.play();
+
     window.electron.ipcRenderer.once('face-api-loaded-reply', (arg) => {
       console.log('arg');
       setTimeout(() => {
